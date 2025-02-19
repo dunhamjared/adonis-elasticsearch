@@ -1,0 +1,56 @@
+{
+  "name": "@dunhamjared/adonis-elasticsearch",
+  "version": "0.1.0",
+  "description": "Elasticsearch Wrapper for Adonis.js",
+  "main": "./build/index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint",
+    "lint-fix": "eslint --fix",
+    "clean": "del-cli build",
+    "compile": "npm run lint && npm run clean && tsc",
+    "del-cli": "^6.0.0",
+    "build": "npm run compile",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write ."
+  },
+  "exports": {
+    ".": "./build/index.js",
+    "./services/*": "./build/services/*.js",
+    "./types/*": "./build/src/types/*.js",
+    "./elasticsearch": "./build/src/elasticsearch/main.js",
+    "./elasticsearch_provider": "./build/providers/elasticsearch_provider.js"
+  },
+  "devDependencies": {
+    "@adonisjs/core": "^6.17.2",
+    "@adonisjs/eslint-config": "^2.0.0",
+    "@adonisjs/prettier-config": "^1.4.0",
+    "@adonisjs/tsconfig": "^1.4.0",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.10.18",
+    "del-cli": "^6.0.0",
+    "prettier": "^3.4.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@adonisjs/presets": "^2.6.3",
+    "@elastic/elasticsearch": "~8.17",
+    "@poppinss/hooks": "^7.2.4",
+    "@poppinss/macroable": "^1.0.3",
+    "@poppinss/utils": "^6.8.3"
+  },
+  "peerDependencies": {
+    "@adonisjs/core": "^6.10.1"
+  },
+  "prettier": "@adonisjs/prettier-config",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dunhamjared/adonis-elasticsearch.git"
+  }
+}
