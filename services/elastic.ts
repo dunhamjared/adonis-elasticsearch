@@ -1,10 +1,10 @@
 import app from '@adonisjs/core/services/app'
 import { Elasticsearch } from '../src/elasticsearch/main.js'
 
-let elastic: Elasticsearch
+let es: Elasticsearch
 
 await app.booted(async () => {
-  elastic = await app.container.make(Elasticsearch)
+  es = await app.container.make(Elasticsearch)
 })
 
-export { elastic as default }
+export { es as default }

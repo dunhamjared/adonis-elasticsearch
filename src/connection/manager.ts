@@ -23,14 +23,14 @@ export class ConnectionManager implements ConnectionManagerContract {
     connection.on('disconnect', ($connection) => this.handleDisconnect($connection))
     connection.on('connect', ($connection) => this.handleConnect($connection))
     connection.on('error', (error, $connection) => {
-      this.emitter.emit('elasticsearch:connection:error', [error, $connection])
+      this.emitter.emit('es:connection:error', [error, $connection])
     })
   }
 
   private handleDisconnect(connection: ConnectionContract): void {
     if (this.orphanConnections.has(connection)) {
       this.orphanConnections.delete(connection)
-      this.emitter.emit('elasticsearch:connection:disconnect', connection)
+      this.emitter.emit('es:connection:disconnect', connection)
       this.logger.trace({ connection: connection.name }, 'disconnecting connection inside manager')
       return
     }
@@ -41,7 +41,7 @@ export class ConnectionManager implements ConnectionManagerContract {
       return
     }
 
-    this.emitter.emit('elasticsearch:connection:disconnect', connection)
+    this.emitter.emit('es:connection:disconnect', connection)
     this.logger.trace({ connection: connection.name }, 'disconnecting connection inside manager')
 
     delete internalConnection.connection
@@ -55,7 +55,7 @@ export class ConnectionManager implements ConnectionManagerContract {
       return
     }
 
-    this.emitter.emit('elasticsearch:connection:connect', connection)
+    this.emitter.emit('es:connection:connect', connection)
     this.logger.trace({ connection: connection.name }, 'connection connected inside manager')
 
     internalConnection.state = 'open'

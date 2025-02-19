@@ -8,9 +8,9 @@ declare module '@adonisjs/core/types' {
     elasticsearch: Elasticsearch
   }
   export interface EventsList {
-    'elasticsearch:connection:connect': ConnectionContract
-    'elasticsearch:connection:disconnect': ConnectionContract
-    'elasticsearch:connection:error': [Error, ConnectionContract]
+    'es:connection:connect': ConnectionContract
+    'es:connection:disconnect': ConnectionContract
+    'es:connection:error': [Error, ConnectionContract]
   }
 }
 

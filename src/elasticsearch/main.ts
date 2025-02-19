@@ -44,7 +44,7 @@ export class Elasticsearch extends Macroable {
     return rawConnection?.client
   }
 
-  query() {
+  client() {
     return this.connection(this.primaryConnectionName)
   }
 }
