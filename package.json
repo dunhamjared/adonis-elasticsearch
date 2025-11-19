@@ -89,7 +89,7 @@
       "release": true
     },
     "npm": {
-      "publish": true,
+      "publish": false,
       "skipChecks": true
     },
     "plugins": {
