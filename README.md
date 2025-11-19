@@ -1,7 +1,5 @@
 # Adonis.js Elasticsearch Wrapper
 
-**THIS IS A WORK IN PROGRESS**
-
 This package is a wrapper for the official [elasticsearch-js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html) package.
 It provides a simple way to use Elasticsearch in your Adonis.js application.
 
