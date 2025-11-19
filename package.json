@@ -50,8 +50,7 @@
   },
   "prettier": "@adonisjs/prettier-config",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "repository": {
     "type": "git",
