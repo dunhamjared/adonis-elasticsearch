@@ -132,27 +132,22 @@ export class ConnectionManager implements ConnectionManagerContract {
     return !!connection.connection && connection.state === 'open'
   }
 
-  async close(connectionName: string, release?: boolean): Promise<void> {
+  async close(connectionName: string): Promise<void> {
     if (this.isConnected(connectionName)) {
       const connection = this.get(connectionName)!
       await connection.connection!.disconnect()
       connection.state = 'closing'
     }
-
-    if (release) {
-      await this.release(connectionName)
-    }
   }
 
-  async closeAll(release?: boolean): Promise<void> {
-    await Promise.all(Array.from(this.connections.keys()).map((name) => this.close(name, release)))
+  async closeAll(): Promise<void> {
+    await Promise.all(Array.from(this.connections.keys()).map((name) => this.close(name)))
   }
 
   async release(connectionName: string): Promise<void> {
     if (this.isConnected(connectionName)) {
-      await this.close(connectionName, true)
-    } else {
-      this.connections.delete(connectionName)
+      await this.close(connectionName)
     }
+    this.connections.delete(connectionName)
   }
 }

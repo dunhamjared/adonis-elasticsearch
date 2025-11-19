@@ -1,20 +1,17 @@
 # Adonis.js Elasticsearch Wrapper
 
-> [!WARNING]
-> THIS PROJECT IS STILL IN DEVELOPMENT AND NOT READY FOR PRODUCTION USE.
-
-This package is a wrapper for the official [elasticsearch-js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html) package.  
+This package is a wrapper for the official [elasticsearch-js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html) package.
 It provides a simple way to use Elasticsearch in your Adonis.js application.
 
 ## Installation
 
-// TODO
+Install the package from the npm registry as follows:
 
 ```bash
 npm install @dunhamjared/adonis-elasticsearch
 ```
 
-Once done, you must run the following command to configure Elasticsearch.
+Once done, you must run the following command to configure the package.
 
 ```bash
 node ace configure @dunhamjared/adonis-elasticsearch
@@ -22,22 +19,17 @@ node ace configure @dunhamjared/adonis-elasticsearch
 
 ## Configuration
 
-The configuration is stored inside the config/elasticsearch.ts file.
+The configuration is stored inside the `config/elasticsearch.ts` file.
 
 ```typescript
 import { defineConfig } from '@dunhamjared/adonis-elasticsearch'
+import env from '#start/env'
 
 const esConfig = defineConfig({
-  connection: 'main',
+  connection: env.get('ES_CONNECTION', 'main'),
   connections: {
     main: {
-      cloud: {
-        id: '<cloud-id>',
-      },
-      auth: {
-        username: 'elastic',
-        password: 'changeme',
-      },
+      node: env.get('ES_NODE_URL', 'http://localhost:9200'),
     },
   },
 })
@@ -49,93 +41,125 @@ See the [official documentation](https://www.elastic.co/guide/en/elasticsearch/c
 
 ## Basic Usage
 
-Select query with pagination:
+### Get Client
+
+Here's how you can get the elasticsearch client instance.
 
 ```typescript
-import es from '@dunahmjared/elasticsearch/services/elastic'
+import es from '@dunhamjared/adonis-elasticsearch/services/main'
 
-export default class PostsController {
-  async index({ request }: HttpContext) {
-    const page = request.input('page', 1)
-    const limit = 20
-
-    const posts = await es
-      .client()
-      .search({
-        index: 'posts',
-        body: {
-          from: (page - 1) * limit,
-          size: limit,
-          query: {
-            match_all: {},
-          },
-        },
-      })
-
-    return posts
-  }
-}
+const client = es.client()
 ```
 
-Insert query:
+### Search query with pagination
+
+```typescript
+const posts = await es
+  .client()
+  .search({
+    index: 'posts',
+    from: (page - 1) * limit,
+    size: limit,
+    query: {
+      match_all: {},
+    },
+  })
+```
+
+### Insert query
 
 ```ts
-import es from '@dunahmjared/elasticsearch/services/elastic'
+const results = await es
+  .client()
+  .index({
+    index: 'posts',
+    body: {
+      title,
+      description,
+    },
+  })
+```
 
-export default class PostsController {
-  async store({ request }: HttpContext) {
-    const title = request.input('title')
-    const description = request.input('description')
+### Update query
 
-    const results = await es
-      .client()
-      .index({
-        index: 'posts',
-        body: {
-          title,
-          description,
-        },
-      })
+```ts
+const results = await es
+  .client()
+  .update({
+    index: 'posts',
+    id: '1',
+    body: {
+      doc: {
+        title,
+        description,
+      },
+    },
+  })
+```
 
-    return results._id
-  }
-}
+### Delete query
+
+```ts
+const results = await es
+  .client()
+  .delete({
+    index: 'posts',
+    id: '1',
+  })
+```
+
+### Health Check
+
+```ts
+const health = await es.client().cluster.health()
 ```
 
 See the [official documentation](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html) for more query options.
 
 ## Switching between connections
 
-You can switch between connections by passing the connection name to the connection method.
+You can switch between connections by passing the connection name to the `connection` method.
 
 ```typescript
-import es from '@dunahmjared/elasticsearch/services/elastic'
+import es from '@dunhamjared/adonis-elasticsearch/services/main'
 
-const example = elastic.connection('example')
+const example = es.connection('example')
 
-await example
-  .client()
-  .get({ 
-    index: 'items', 
-    id: '1' 
-  })
+await example.get({
+  index: 'items',
+  id: '1'
+})
 ```
 
 ## Closing connections
 
-You can close connections by calling the close method.
+You can close a specific connection by calling the `close` method. This will disconnect the client, but keep the configuration in the manager.
 
 Note: All connections are automatically closed at the end of the application lifecycle.
 
 ```typescript
-import es from '@dunahmjared/elasticsearch/services/elastic'
+import es from '@dunhamjared/adonis-elasticsearch/services/main'
 
 // Close the default connection
-es.connection().close()
+await es.close()
 
 // Close a specific connection
-es.manager.close('example')
+await es.close('example')
 
 // Close all connections
-es.manager.closeAll()
+await es.closeAll()
+```
+
+## Releasing connections
+
+You can release a specific connection by calling the `release` method. This will disconnect the client and remove the configuration from the manager.
+
+```typescript
+import es from '@dunhamjared/adonis-elasticsearch/services/main'
+
+// Release the default connection
+await es.release()
+
+// Release a specific connection
+await es.release('example')
 ```

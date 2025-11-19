@@ -1,0 +1,16 @@
+{{{
+  indent(2)
+}}}
+import { defineConfig } from '@dunhamjared/adonis-elasticsearch'
+import env from '#start/env'
+
+const esConfig = defineConfig({
+  connection: env.get('ES_CONNECTION', 'main'),
+  connections: {
+    main: {
+      node: env.get('ES_NODE_URL', 'http://localhost:9200'),
+    },
+  },
+})
+
+export default esConfig

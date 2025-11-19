@@ -13,7 +13,8 @@
     "del-cli": "^6.0.0",
     "build": "npm run compile",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "node --loader=ts-node/esm tests/bootstrap.ts"
   },
   "exports": {
     ".": "./build/index.js",
@@ -27,9 +28,12 @@
     "@adonisjs/eslint-config": "^2.0.0",
     "@adonisjs/prettier-config": "^1.4.0",
     "@adonisjs/tsconfig": "^1.4.0",
+    "@japa/assert": "^4.1.1",
+    "@japa/runner": "^4.4.0",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.10.18",
     "del-cli": "^6.0.0",
+    "pino-pretty": "^13.1.2",
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"

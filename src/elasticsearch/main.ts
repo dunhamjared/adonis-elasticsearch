@@ -47,4 +47,16 @@ export class Elasticsearch extends Macroable {
   client() {
     return this.connection(this.primaryConnectionName)
   }
+
+  async close(connection: string = this.primaryConnectionName) {
+    return this.manager.close(connection)
+  }
+
+  async closeAll() {
+    return this.manager.closeAll()
+  }
+
+  async release(connection: string = this.primaryConnectionName) {
+    return this.manager.release(connection)
+  }
 }
