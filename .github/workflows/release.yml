@@ -1,8 +1,11 @@
 name: release
+
 on: workflow_dispatch
+
 permissions:
   contents: write
   id-token: write
+
 jobs:
   checks:
     uses: ./.github/workflows/checks.yml
@@ -20,6 +23,6 @@ jobs:
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      - name: Init npm config
-      - run: npm ci
+      - name: Init npm config  
+        run: npm ci            
       - run: npm run release -- --ci
