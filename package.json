@@ -10,12 +10,28 @@
     "lint-fix": "eslint --fix",
     "clean": "del-cli build",
     "compile": "npm run lint && npm run clean && tsc",
-    "del-cli": "^6.0.0",
     "build": "npm run compile",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "test": "node --loader=ts-node/esm tests/bootstrap.ts"
+    "test": "node --loader=ts-node/esm tests/bootstrap.ts",
+    "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
+    "pretest": "npm run lint",
+    "prebuild": "npm run lint && npm run clean",
+    "postbuild": "npm run copy:templates",
+    "version": "npm run build",
+    "prepublishOnly": "npm run build",
+    "release": "release-it"
   },
+  "files": [
+    "build/providers", 
+    "build/services", 
+    "build/src", 
+    "build/stubs", 
+    "build/configure.js",
+    "build/configure.d.ts",
+    "build/index.d.ts", 
+    "build/index.js"
+  ],
   "exports": {
     ".": "./build/index.js",
     "./services/*": "./build/services/*.js",
