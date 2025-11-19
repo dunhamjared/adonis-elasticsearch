@@ -23,13 +23,13 @@
     "release": "release-it"
   },
   "files": [
-    "build/providers", 
-    "build/services", 
-    "build/src", 
-    "build/stubs", 
+    "build/providers",
+    "build/services",
+    "build/src",
+    "build/stubs",
     "build/configure.js",
     "build/configure.d.ts",
-    "build/index.d.ts", 
+    "build/index.d.ts",
     "build/index.js"
   ],
   "exports": {
@@ -46,6 +46,7 @@
     "@adonisjs/tsconfig": "^1.4.0",
     "@japa/assert": "^4.1.1",
     "@japa/runner": "^4.4.0",
+    "@release-it/conventional-changelog": "^10.0.2",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.10.18",
     "del-cli": "^6.0.0",
