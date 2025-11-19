@@ -1,3 +1,6 @@
+{{{
+  exports({ to: app.configPath('elasticsearch.ts') })
+}}}
 import { defineConfig } from '@dunhamjared/adonis-elasticsearch'
 import env from '#start/env'
 
