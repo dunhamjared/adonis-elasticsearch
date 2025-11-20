@@ -1,7 +1,7 @@
 import { test } from '@japa/runner'
 import { Logger } from '@adonisjs/core/logger'
 import { Connection } from '../../src/connection/index.js'
-import { mockConnection } from '../helpers.js'
+import { MockConnection } from '../helpers.js'
 
 test.group('Connection', (group) => {
   let logger: Logger
@@ -16,7 +16,7 @@ test.group('Connection', (group) => {
   test('instantiate client on connect', ({ assert }) => {
     const connection = new Connection(
       'main',
-      { node: 'http://localhost:9200', Connection: mockConnection() },
+      { node: 'http://localhost:9200', Connection: MockConnection },
       logger
     )
 
@@ -32,7 +32,7 @@ test.group('Connection', (group) => {
   test('disconnect closes client', async ({ assert }) => {
     const connection = new Connection(
       'main',
-      { node: 'http://localhost:9200', Connection: mockConnection() },
+      { node: 'http://localhost:9200', Connection: MockConnection },
       logger
     )
 
@@ -51,7 +51,7 @@ test.group('Connection', (group) => {
   test('disconnect does nothing if no client', async ({ assert }) => {
     const connection = new Connection(
       'main',
-      { node: 'http://localhost:9200', Connection: mockConnection() },
+      { node: 'http://localhost:9200', Connection: MockConnection },
       logger
     )
 
@@ -63,7 +63,7 @@ test.group('Connection', (group) => {
   test('disconnect emits error if client close fails', async ({ assert }) => {
     const connection = new Connection(
       'main',
-      { node: 'http://localhost:9200', Connection: mockConnection() },
+      { node: 'http://localhost:9200', Connection: MockConnection },
       logger
     )
 
@@ -94,7 +94,7 @@ test.group('Connection', (group) => {
   test('emit error if connection fails', async ({ assert }) => {
     const connection = new Connection(
       'main',
-      { node: 'invalid-url', Connection: mockConnection() },
+      { node: 'invalid-url', Connection: MockConnection },
       logger
     )
 

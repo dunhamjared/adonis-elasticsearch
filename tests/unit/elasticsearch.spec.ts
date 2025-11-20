@@ -2,7 +2,7 @@ import { test } from '@japa/runner'
 import { Logger } from '@adonisjs/core/logger'
 import { Emitter } from '@adonisjs/core/events'
 import { Elasticsearch } from '../../src/elasticsearch/main.js'
-import { mockConnection } from '../helpers.js'
+import { MockConnection } from '../helpers.js'
 
 async function createEmitter() {
   const { Application } = await import('@adonisjs/core/app')
@@ -33,7 +33,7 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }
@@ -47,7 +47,7 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }
@@ -67,11 +67,11 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
         secondary: {
           node: 'http://localhost:9201',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }
@@ -87,7 +87,7 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }
@@ -103,7 +103,7 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }
@@ -129,7 +129,7 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }
@@ -154,7 +154,7 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }
@@ -173,7 +173,7 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }
@@ -192,7 +192,7 @@ test.group('Elasticsearch', (group) => {
       connections: {
         main: {
           node: 'http://localhost:9200',
-          Connection: mockConnection(),
+          Connection: MockConnection,
         },
       },
     }

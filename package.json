@@ -45,7 +45,6 @@
     "@adonisjs/eslint-config": "^2.0.0",
     "@adonisjs/prettier-config": "^1.4.0",
     "@adonisjs/tsconfig": "^1.4.0",
-    "@elastic/elasticsearch-mock": "^2.1.0",
     "@japa/assert": "^4.1.1",
     "@japa/runner": "^4.4.0",
     "@release-it/conventional-changelog": "^10.0.2",

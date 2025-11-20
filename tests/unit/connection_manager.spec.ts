@@ -2,7 +2,7 @@ import { test } from '@japa/runner'
 import { Emitter } from '@adonisjs/core/events'
 import { Logger } from '@adonisjs/core/logger'
 import { ConnectionManager } from '../../src/connection/manager.js'
-import { mockConnection } from '../helpers.js'
+import { MockConnection } from '../helpers.js'
 
 async function createEmitter() {
   const { Application } = await import('@adonisjs/core/app')
@@ -64,7 +64,7 @@ test.group('ConnectionManager', (group) => {
 
   test('patch disconnects existing connection', async ({ assert }) => {
     const manager = new ConnectionManager(logger, emitter)
-    manager.add('main', { node: 'http://localhost:9200', Connection: mockConnection() })
+    manager.add('main', { node: 'http://localhost:9200', Connection: MockConnection })
     manager.connect('main')
 
     const conn = manager.get('main')!
@@ -81,7 +81,7 @@ test.group('ConnectionManager', (group) => {
       disconnectEmitted = true
     })
 
-    manager.patch('main', { node: 'http://localhost:9201', Connection: mockConnection() })
+    manager.patch('main', { node: 'http://localhost:9201', Connection: MockConnection })
 
     // Patch calls disconnect async, so wait a bit
     await new Promise((resolve) => setTimeout(resolve, 10))
@@ -93,7 +93,7 @@ test.group('ConnectionManager', (group) => {
 
   test('handle events for removed connection', async ({ assert }) => {
     const manager = new ConnectionManager(logger, emitter)
-    manager.add('main', { node: 'http://localhost:9200', Connection: mockConnection() })
+    manager.add('main', { node: 'http://localhost:9200', Connection: MockConnection })
     manager.connect('main')
 
     const connection = manager.get('main')!.connection!
@@ -123,7 +123,7 @@ test.group('ConnectionManager', (group) => {
 
   test('close a connection', async ({ assert }) => {
     const manager = new ConnectionManager(logger, emitter)
-    manager.add('main', { node: 'http://localhost:9200', Connection: mockConnection() })
+    manager.add('main', { node: 'http://localhost:9200', Connection: MockConnection })
     manager.connect('main')
     await manager.close('main')
     assert.isTrue(manager.has('main'))
@@ -147,7 +147,7 @@ test.group('ConnectionManager', (group) => {
 
   test('connect does nothing if already connected', ({ assert }) => {
     const manager = new ConnectionManager(logger, emitter)
-    manager.add('main', { node: 'http://localhost:9200', Connection: mockConnection() })
+    manager.add('main', { node: 'http://localhost:9200', Connection: MockConnection })
     manager.connect('main')
     const conn1 = manager.get('main')!.connection
 
@@ -164,7 +164,7 @@ test.group('ConnectionManager', (group) => {
 
   test('monitor connect event', async ({ assert }) => {
     const manager = new ConnectionManager(logger, emitter)
-    manager.add('main', { node: 'http://localhost:9200', Connection: mockConnection() })
+    manager.add('main', { node: 'http://localhost:9200', Connection: MockConnection })
 
     let connectEmitted = false
     emitter.on('es:connection:connect', () => {
@@ -181,7 +181,7 @@ test.group('ConnectionManager', (group) => {
 
   test('monitor disconnect event', async ({ assert }) => {
     const manager = new ConnectionManager(logger, emitter)
-    manager.add('main', { node: 'http://localhost:9200', Connection: mockConnection() })
+    manager.add('main', { node: 'http://localhost:9200', Connection: MockConnection })
     manager.connect('main')
 
     const connection = manager.get('main')!.connection!
@@ -201,7 +201,7 @@ test.group('ConnectionManager', (group) => {
 
   test('monitor error event', async ({ assert }) => {
     const manager = new ConnectionManager(logger, emitter)
-    manager.add('main', { node: 'http://localhost:9200', Connection: mockConnection() })
+    manager.add('main', { node: 'http://localhost:9200', Connection: MockConnection })
     manager.connect('main')
 
     const connection = manager.get('main')!.connection!
