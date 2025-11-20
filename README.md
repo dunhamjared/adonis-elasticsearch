@@ -1,19 +1,20 @@
 # Adonis.js Elasticsearch Wrapper
 
-This package is a wrapper for the official [elasticsearch-js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html) package.
-It provides a simple way to use Elasticsearch in your Adonis.js application.
+This package is a wrapper for the official [elasticsearch-js](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html) client. 
+
+The connection strategy is similar to Adonis.js Lucid, providing a familiar API for managing single or multiple Elasticsearch connections.
 
 ## Installation
 
 Install the package from the npm registry as follows:
 
-```bash
+```console
 npm install @dunhamjared/adonis-elasticsearch
 ```
 
-Once done, you must run the following command to configure the package.
+Then, you must run the following command to configure the package:
 
-```bash
+```console
 node ace configure @dunhamjared/adonis-elasticsearch
 ```
 
