@@ -17,7 +17,7 @@ Once done, you must run the following command to configure the package.
 node ace configure @dunhamjared/adonis-elasticsearch
 ```
 
-> **Note**
+> [!NOTE]
 > The configure command will automatically attempt to install the latest stable version of `@elastic/elasticsearch` as a peer dependency. If you require a specific version, please install it manually before running the configure command.
 
 ## Compatibility
@@ -27,7 +27,7 @@ This package is compatible with the following versions:
 - **AdonisJS**: v6
 - **@elastic/elasticsearch**: v8.x, v9.x
 
-> **Note**
+> [!NOTE]
 > It is recommended that the `@elastic/elasticsearch` client version matches your Elasticsearch server version (e.g. use client v8 for server v8). Language clients are forward compatible (support communicating with greater or equal minor versions). For more details, see the [official compatibility documentation](https://www.npmjs.com/package/@elastic/elasticsearch).
 
 ## Configuration
