@@ -4,9 +4,5 @@
         "rootDir": "./",
         "outDir": "./build",
         "allowJs": true
-    },
-    "include": [
-        "**/*",
-        "tests/japa_types.ts"
-    ]
+    }
 }
