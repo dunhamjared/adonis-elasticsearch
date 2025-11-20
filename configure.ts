@@ -21,10 +21,9 @@ export async function configure(command: Configure) {
   await codemods.updateRcFile((rcFile) => {
     rcFile.addProvider('@dunhamjared/adonis-elasticsearch/elasticsearch_provider')
   })
-    
+
   /**
    * Install peer dependencies
    */
   await codemods.installPackages([{ name: '@elastic/elasticsearch', isDevDependency: false }])
-
 }
