@@ -1,6 +1,6 @@
 {
   "name": "@dunhamjared/adonis-elasticsearch",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Elasticsearch Wrapper for Adonis.js",
   "main": "./build/index.js",
   "type": "module",
