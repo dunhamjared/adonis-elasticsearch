@@ -60,9 +60,7 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@adonisjs/presets": "^2.6.3",
     "@elastic/elasticsearch": "~8.17",
-    "@poppinss/hooks": "^7.2.4",
     "@poppinss/macroable": "^1.0.3",
     "@poppinss/utils": "^6.8.3"
   },

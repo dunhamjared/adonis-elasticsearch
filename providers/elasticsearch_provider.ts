@@ -18,7 +18,7 @@ export default class ElasticProvider {
   constructor(protected app: ApplicationService) {}
 
   /**
-   * Register bind    ings to the container
+   * Register bindings to the container
    */
   register() {
     this.app.container.singleton(Elasticsearch, async (resolver) => {

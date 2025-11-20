@@ -56,8 +56,7 @@ export interface ConnectionManagerContract {
   isConnected(connectionName: string): boolean
 
   /**
-   * Close a given connection. This is also kill the underlying knex connection
-   * pool
+   * Close a given connection. This is also kill the underlying connection pool
    */
   close(connectionName: string, release?: boolean): Promise<void>
 
@@ -103,12 +102,12 @@ export interface ConnectionContract extends EventEmitter {
   ): this
 
   /**
-   * Make knex connection
+   * Make connection
    */
   connect(): void
 
   /**
-   * Disconnect knex
+   * Disconnect
    */
   disconnect(): Promise<void>
 }
