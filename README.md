@@ -28,7 +28,7 @@ This package is compatible with the following versions:
 - **@elastic/elasticsearch**: v8.x, v9.x
 
 > [!NOTE]
-> It is recommended that the `@elastic/elasticsearch` client version matches your Elasticsearch server version (e.g. use client v8 for server v8). Language clients are forward compatible (support communicating with greater or equal minor versions). For more details, see the [official compatibility documentation](https://www.npmjs.com/package/@elastic/elasticsearch).
+> It is recommended that the `@elastic/elasticsearch` client version matches your Elasticsearch server version (e.g. use client v8 for server v8). Language clients are forward compatible (support communicating with greater or equal minor versions). For more details, see the [official installation documentation](https://www.elastic.co/docs/reference/elasticsearch/clients/javascript/installation).
 
 ## Configuration
 
