@@ -17,6 +17,19 @@ Once done, you must run the following command to configure the package.
 node ace configure @dunhamjared/adonis-elasticsearch
 ```
 
+> **Note**
+> The configure command will automatically attempt to install the latest stable version of `@elastic/elasticsearch` as a peer dependency. If you require a specific version, please install it manually before running the configure command.
+
+## Compatibility
+
+This package is compatible with the following versions:
+
+- **AdonisJS**: v6
+- **@elastic/elasticsearch**: v8.x, v9.x
+
+> **Note**
+> It is recommended that the `@elastic/elasticsearch` client version matches your Elasticsearch server version (e.g. use client v8 for server v8). Language clients are forward compatible (support communicating with greater or equal minor versions). For more details, see the [official compatibility documentation](https://www.npmjs.com/package/@elastic/elasticsearch).
+
 ## Configuration
 
 The configuration is stored inside the `config/elasticsearch.ts` file.
@@ -54,58 +67,50 @@ const client = es.client()
 ### Search query with pagination
 
 ```typescript
-const posts = await es
-  .client()
-  .search({
-    index: 'posts',
-    from: (page - 1) * limit,
-    size: limit,
-    query: {
-      match_all: {},
-    },
-  })
+const posts = await es.client().search({
+  index: 'posts',
+  from: (page - 1) * limit,
+  size: limit,
+  query: {
+    match_all: {},
+  },
+})
 ```
 
 ### Insert query
 
 ```ts
-const results = await es
-  .client()
-  .index({
-    index: 'posts',
-    body: {
-      title,
-      description,
-    },
-  })
+const results = await es.client().index({
+  index: 'posts',
+  body: {
+    title,
+    description,
+  },
+})
 ```
 
 ### Update query
 
 ```ts
-const results = await es
-  .client()
-  .update({
-    index: 'posts',
-    id: '1',
-    body: {
-      doc: {
-        title,
-        description,
-      },
+const results = await es.client().update({
+  index: 'posts',
+  id: '1',
+  body: {
+    doc: {
+      title,
+      description,
     },
-  })
+  },
+})
 ```
 
 ### Delete query
 
 ```ts
-const results = await es
-  .client()
-  .delete({
-    index: 'posts',
-    id: '1',
-  })
+const results = await es.client().delete({
+  index: 'posts',
+  id: '1',
+})
 ```
 
 ### Health Check
@@ -127,7 +132,7 @@ const example = es.connection('example')
 
 await example.get({
   index: 'items',
-  id: '1'
+  id: '1',
 })
 ```
 
