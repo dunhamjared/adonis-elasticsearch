@@ -64,7 +64,7 @@
     "@poppinss/utils": "^6.8.3"
   },
   "peerDependencies": {
-    "@adonisjs/core": "^6.10.1",
+    "@adonisjs/core": "^6.10.1 || ^7.0.0",
     "@elastic/elasticsearch": "^8.0.0 || ^9.0.0"
   },
   "prettier": "@adonisjs/prettier-config",
