@@ -1,5 +1,4 @@
-import pkg from '@elastic/elasticsearch'
-const { BaseConnection } = pkg
+import { BaseConnection } from '@elastic/elasticsearch'
 
 export class MockConnection extends BaseConnection {
   async request(_params: any, _options: any) {
